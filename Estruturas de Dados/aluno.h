@@ -16,10 +16,10 @@ typedef struct Aluno {
     char nome[100];
     int matricula;
 
-    // Lista simplesmente encadeada de disciplinas
+    // lista simplesmente encadeada de disciplinas
     LinkedList disciplinas;
 
-    // Ponteiros da lista duplamente encadeada de alunos
+    // ponteiros da lista duplamente encadeada de alunos
     struct Aluno* prev;
     struct Aluno* next;
 } Aluno;
