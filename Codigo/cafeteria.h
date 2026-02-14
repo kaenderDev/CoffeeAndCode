@@ -2,15 +2,16 @@
 #define CAFETERIA_H
 
 typedef struct Item {
+    int id_i;             //id 
     char nome[50];        // Nome do item
     float preco;          // Preço do item
     struct Item *proximo; // Para a Lista de Itens
 } Item;
 
 typedef struct Pedido {
-    int id;                 // Identificador único do pedido
+    int id_p;               // Identificador único do pedido
     char nome_cliente[50];  // Nome do cliente que fez o pedido
-    float *itens_precos;    // Ponteiro que apontará para o bloco de memória do array
+    int *itens_id;          //Array dinâmico que guarda os IDs dos produtos
     int quantidade_itens;   // Guarda o tamanho atual do array
     int status;             // 0 - Pendente, 1 - Em preparação, 2 - Pronto para entrega, 3 - Entregue, 4 - Cancelado
     struct Pedido *proximo; // Para a Fila/Lista
@@ -20,5 +21,11 @@ typedef struct {
     Pedido *inicio;                // Ponteiro para o início da fila
     Pedido *fim;                   // Ponteiro para o fim da fila
 } FilaPedidos;
+
+// Protótipos das funções de Cardápio (teste)
+Item* adicionarAoCardapio(Item *lista, int id, char *nome, float preco);
+void listarCardapio(Item *lista);
+void editarItem(Item *lista, int id);
+Item* deletarItem(Item *lista, int id);
 
 #endif
