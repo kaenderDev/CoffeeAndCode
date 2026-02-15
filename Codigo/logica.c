@@ -6,6 +6,9 @@
 #include <string.h>
 #include "cafeteria.h"
 
+// Funções do cardapio e itens
+
+
 // Função p/ Listar
 
 void listarCardapio(Item *lista) {
@@ -88,6 +91,7 @@ Item* adicionarAoCardapio(Item *inicio, int id, char *nome, float preco) {
     return novo; 
 }
 
+// Funções do faturamento
 
 
 // Inicializa o sistema de faturamento zerado
@@ -131,6 +135,64 @@ void mostrarRelatorio(Faturamento *f) {
     printf("Total arrecadado: R$ %.2f\n", total);
     printf("Media por venda: R$ %.2f\n", total/qtd);
     printf("=========================================\n");
+}
+
+// Funcoes do cancelamento
+
+void inicializarPilha(PilhaCancelamento *p) {
+    p->topo = NULL;
+}
+
+// Verifica se está vazia
+int pilhaVazia(PilhaCancelamento *p) {
+    return p->topo == NULL;
+}
+
+// Empilha pedido cancelado
+void empilharCancelamento(PilhaCancelamento *p, Pedido *pedido) {
+    
+    Pedido *novo = (Pedido*) malloc(sizeof(Pedido));
+    if (!novo) {
+        printf("Erro de memória!\n");
+        return;
+    }
+    
+    *novo = *pedido; // copia o pedido
+    novo->proximo = p->topo;
+    p->topo = novo;
+
+    printf("Pedido %d empilhado (cancelado).\n", pedido->id_p);
+}
+
+// Remove da pilha
+
+Pedido* removerCancelamento(PilhaCancelamento *p) {
+    
+    if (pilhaVazia(p)) {
+        printf("Pilha vazia!\n");
+        return NULL;
+    }
+
+    Pedido *removido = p->topo;
+    p->topo = removido->proximo;
+
+    return removido;
+}
+
+// Mostra a pilha
+    
+void mostrarCancelamentos(PilhaCancelamento *p) {
+    
+    Pedido *atual = p->topo;
+    printf("\n--- Pilha de Cancelamentos ---\n");
+
+    while (atual != NULL) {
+        printf("Pedido ID: %d | Cliente: %s\n",
+               atual->id_p,
+               atual->nome_cliente);
+
+        atual = atual->proximo;
+    }
 }
 
 

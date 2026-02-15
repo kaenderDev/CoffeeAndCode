@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include "cafeteria.h"
-#include "logica.c"
+#include <string.h>
+#include <stdlib.h>
+
 int main() {
     Item *cardapio = NULL;
+    
     
     // 1. Teste de Adição
     cardapio = adicionarAoCardapio(cardapio, 1, "Cafe", 5.0);
@@ -21,6 +24,29 @@ int main() {
 
     // 5. Resultado Final
     listarCardapio(cardapio);
+    
+    //Testes de cancelamento
+    
+    Pedido pedido; // pedido de teste
+    pedido.id_p = 1;
+    pedido.status = 0;
+    pedido.quantidade_itens = 0;
+    pedido.itens_id = NULL;
+    strcpy(pedido.nome_cliente, "Teste");
+    
+    PilhaCancelamento pilha; 
+    inicializarPilha(&pilha);
+    mostrarCancelamentos(&pilha); //retornar vazio
+    empilharCancelamento(&pilha, &pedido); //adiciona o pedido
+    mostrarCancelamentos(&pilha); //retornar pedido 01
+    
+    Pedido *removido = removerCancelamento(&pilha); //remove 01
+    if (removido != NULL) {
+    free(removido->itens_id);
+    free(removido);
+    }
+    
+    mostrarCancelamentos(&pilha); //retornar vazio
 
     return 0;
 }

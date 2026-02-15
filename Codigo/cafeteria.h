@@ -17,7 +17,7 @@ typedef struct Pedido {
     struct Pedido *proximo; // Para a Fila/Lista
 } Pedido;
 
-typedef struct {
+typedef struct { 
     Pedido *inicio;                // Ponteiro para o início da fila
     Pedido *fim;                   // Ponteiro para o fim da fila
 } FilaPedidos;
@@ -27,6 +27,10 @@ typedef struct {
     float vendas[10];       // Guarda as últimas 10 vendas
     int total_vendas;       // Contador de vendas realizadas
 } Faturamento;
+
+typedef struct pilhaCancelamento{
+    Pedido *topo;
+} PilhaCancelamento;
 
 // Protótipos das funções de Cardápio (teste)
 Item* adicionarAoCardapio(Item *lista, int id, char *nome, float preco);
@@ -38,5 +42,12 @@ Item* deletarItem(Item *lista, int id);
 void inicializarFaturamento(Faturamento *f);
 void adicionarVenda(Faturamento *f, float valor);
 void mostrarRelatorio(Faturamento *f);
+
+// Protótipos da pilha de cancelamento
+void inicializarPilha(PilhaCancelamento *p);
+void empilharCancelamento(PilhaCancelamento *p, Pedido *pedido);
+Pedido* removerCancelamento(PilhaCancelamento *p);
+int cancelamentoVazio(PilhaCancelamento *p);
+void mostrarCancelamentos(PilhaCancelamento *p);
 
 #endif
