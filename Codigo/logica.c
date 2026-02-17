@@ -208,16 +208,16 @@ void mostrarCancelamentos(PilhaCancelamento *p) {
 }
 
 // Funções Pedidos e Fila
-
+int proximo_id_pedido = 1;
 // Cria novo pedido
-Pedido* criarPedido(int id, char *nome_cliente){
+Pedido* criarPedido(char *nome_cliente){
     Pedido *novo = (Pedido*)malloc(sizeof(Pedido));
     if(novo == NULL){
         printf("Erro ao alocar memoria para o pedido.\n");
         return NULL;
     }
 
-    novo->id_p = id;
+    novo->id_p = proximo_id_pedido++;
     strcpy(novo->nome_cliente, nome_cliente);
 
     novo->itens_id = NULL;

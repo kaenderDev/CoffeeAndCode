@@ -82,10 +82,9 @@ int main() {
                     scanf("%d", &sub);
 
                     if (sub == 1) {
-                        int id; char cliente[50];
-                        printf("ID Pedido: "); scanf("%d", &id);
+                        char cliente[50];
                         printf("Nome Cliente: "); scanf(" %[^\n]s", cliente);
-                        Pedido *p = criarPedido(id, cliente);
+                        Pedido *p = criarPedido(cliente);
                         int id_i;
                         while(1) {
                             listarCardapio(cardapio);
@@ -102,7 +101,7 @@ int main() {
                         Pedido *entregue = desenfileirarPedido(&fila);
                         if(entregue) {
                             float valor;
-                            printf("Total da venda para %s: ", entregue->nome_cliente); 
+                            printf("Total da venda para %s (atual na fila): ", entregue->nome_cliente); 
                             scanf("%f", &valor);
                             adicionarVenda(&fat, valor);
                             free(entregue->itens_id); 

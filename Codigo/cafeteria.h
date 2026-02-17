@@ -51,7 +51,7 @@ int cancelamentoVazio(PilhaCancelamento *p);
 void mostrarCancelamentos(PilhaCancelamento *p);
 
 // Prótotipos das funções de Pedidos e Fila
-Pedido* criarPedido(int id, char *nome_cliente);
+Pedido* criarPedido(char *nome_cliente);
 void adicionarItemAoPedido(Pedido *p, int id_produto);
 void inicializarFila(FilaPedidos *f);
 void enfileirarPedido(FilaPedidos *f, Pedido*p);
