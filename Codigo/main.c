@@ -2,6 +2,7 @@
 #include "cafeteria.h"
 #include <string.h>
 #include <stdlib.h>
+#include "logica.c"
 
 int main() {
     Item *cardapio = NULL;

@@ -160,6 +160,7 @@ void empilharCancelamento(PilhaCancelamento *p, Pedido *pedido) {
     *novo = *pedido; // copia o pedido
     novo->proximo = p->topo;
     p->topo = novo;
+    pedido->status = 4;
 
     printf("Pedido %d empilhado (cancelado).\n", pedido->id_p);
 }
@@ -175,6 +176,7 @@ Pedido* removerCancelamento(PilhaCancelamento *p) {
 
     Pedido *removido = p->topo;
     p->topo = removido->proximo;
+    removido->status = 1;
 
     return removido;
 }
@@ -253,6 +255,8 @@ void enfileirarPedido(FilaPedidos *f, Pedido *p){
         f->fim->proximo = p;
         f->fim = p;
     }
+
+    p->status = 1;
 
     printf("Pedido #%d (Cliente: %s) entrou na fila de preparacao.\n", p->id_p, p->nome_cliente);
 }
