@@ -78,6 +78,7 @@ int main() {
                     printf("3. Finalizar e Entregar\n");
                     printf("4. Cancelar Pedido Atual\n");
                     printf("5. Ver Pilha de Cancelados\n");
+                    printf("6. Desfazer Cancelamento\n");
                     printf("0. Voltar\n");
                     printf("Escolha: ");
                     scanf("%d", &sub);
@@ -117,6 +118,12 @@ int main() {
                         pausar();
                     } else if (sub == 5) {
                         mostrarCancelamentos(&pilha);
+                        pausar();
+                    }else if (sub == 6) {
+                        if (!pilhaVazia(&pilha)) {
+                            Pedido *desempilhado = removerCancelamento(&pilha);
+                            enfileirarPedido(&fila, desempilhado);
+                        } else printf("Pilha de cancelamentos vazia!\n");
                         pausar();
                     }
                 } while (sub != 0);
