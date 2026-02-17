@@ -186,6 +186,7 @@ Pedido* removerCancelamento(PilhaCancelamento *p) {
 
     Pedido *removido = p->topo;
     p->topo = removido->proximo;
+    removido->proximo = NULL;
     removido->status = 1;
 
     return removido;
@@ -207,7 +208,17 @@ void mostrarCancelamentos(PilhaCancelamento *p) {
     }
 }
 
+//limpar Cancelamentos
+
+void limparCancelamentos(PilhaCancelamento *p){
+    while (!pilhaVazia(p)) {
+        Pedido *removido = removerCancelamento(p);
+        free(removido);
+    }
+}
+
 // Funções Pedidos e Fila
+
 int proximo_id_pedido = 1;
 // Cria novo pedido
 Pedido* criarPedido(char *nome_cliente){

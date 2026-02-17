@@ -49,6 +49,7 @@ void empilharCancelamento(PilhaCancelamento *p, Pedido *pedido);
 Pedido* removerCancelamento(PilhaCancelamento *p);
 int cancelamentoVazio(PilhaCancelamento *p);
 void mostrarCancelamentos(PilhaCancelamento *p);
+void limparCancelamentos(PilhaCancelamento *p);
 
 // Prótotipos das funções de Pedidos e Fila
 Pedido* criarPedido(char *nome_cliente);
