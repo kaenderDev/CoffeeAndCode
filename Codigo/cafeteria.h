@@ -37,6 +37,7 @@ Item* adicionarAoCardapio(Item *lista, int id, char *nome, float preco);
 void listarCardapio(Item *lista);
 void editarItem(Item *lista, int id);
 Item* deletarItem(Item *lista, int id);
+void limparCardapio(Item *lista);
 
 // Protótipos das funções de Faturamento
 void inicializarFaturamento(Faturamento *f);
@@ -60,5 +61,6 @@ Pedido* desenfileirarPedido(FilaPedidos *f);
 float calcularTotalPedido(Pedido *p, Item *cardapio);
 void listarFilaPedidos(FilaPedidos *f, Item *cardapio);
 void limparFila(FilaPedidos *f);
+void destruirPedido(Pedido *p);
 
 #endif

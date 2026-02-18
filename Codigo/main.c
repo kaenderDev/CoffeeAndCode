@@ -106,8 +106,7 @@ int main() {
                             printf("Pedido de %s finalizado.\n", entregue->nome_cliente);
                             printf("Total do pedido: R$ %.2f\n", valor);
                             adicionarVenda(&fat, valor);
-                            free(entregue->itens_id); 
-                            free(entregue);
+                            destruirPedido(entregue);
                         }
                         pausar();
                     } else if (sub == 4) {
@@ -149,6 +148,7 @@ int main() {
                 printf("Saindo do sistema...\n");
                 limparCancelamentos(&pilha);
                 limparFila(&fila);
+                limparCardapio(cardapio);
                 break;
 
             default:

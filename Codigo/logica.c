@@ -101,6 +101,16 @@ Item* adicionarAoCardapio(Item *inicio, int id, char *nome, float preco) {
     return novo; 
 }
 
+// Libera toda a memória alocada para o cardápio
+void limparCardapio(Item *lista) {
+    Item *atual = lista;
+    while (atual != NULL) {
+        Item *proximo = atual->proximo;
+        free(atual);
+        atual = proximo;
+    }
+}
+
 // Funções do faturamento
 
 
@@ -160,17 +170,11 @@ int pilhaVazia(PilhaCancelamento *p) {
 
 // Empilha pedido cancelado
 void empilharCancelamento(PilhaCancelamento *p, Pedido *pedido) {
+    if (pedido == NULL) return;
     
-    Pedido *novo = (Pedido*) malloc(sizeof(Pedido));
-    if (!novo) {
-        printf("Erro de memória!\n");
-        return;
-    }
-    
-    *novo = *pedido; // copia o pedido
-    novo->proximo = p->topo;
-    p->topo = novo;
-    pedido->status = 4;
+    pedido->status = 4; 
+    pedido->proximo = p->topo; 
+    p->topo = pedido; 
 
     printf("Pedido %d empilhado (cancelado).\n", pedido->id_p);
 }
@@ -210,10 +214,10 @@ void mostrarCancelamentos(PilhaCancelamento *p) {
 
 //limpar Cancelamentos
 
-void limparCancelamentos(PilhaCancelamento *p){
+void limparCancelamentos(PilhaCancelamento *p) {
     while (!pilhaVazia(p)) {
         Pedido *removido = removerCancelamento(p);
-        free(removido);
+        destruirPedido(removido);
     }
 }
 
@@ -324,6 +328,16 @@ Pedido* desenfileirarPedido(FilaPedidos *f){
     return pedidoRemovido;
 }
 
+// Libera a memória alocada para o pedido e seu array de itens
+void destruirPedido(Pedido *p) {
+    if (p != NULL) {
+        if (p->itens_id != NULL) {
+            free(p->itens_id); 
+        }
+        free(p); 
+    }
+}
+
 // Listar os pedidos em fila
 void listarFilaPedidos(FilaPedidos *f, Item *cardapio) {
     if (f->inicio == NULL) {
@@ -349,11 +363,10 @@ void listarFilaPedidos(FilaPedidos *f, Item *cardapio) {
 }
 
 // libera a fila 
-void limparFila(FilaPedidos *f){
-    while((f->inicio != NULL)){
+void limparFila(FilaPedidos *f) {
+    while (f->inicio != NULL) {
         Pedido *removido = desenfileirarPedido(f);
-        free(removido);
-        f->fim = NULL;
+        destruirPedido(removido);
     }
 }
 
