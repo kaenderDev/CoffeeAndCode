@@ -2,6 +2,20 @@
 
 Este sistema foi desenvolvido em **C** para automatizar o fluxo operacional de uma cafeteria, integrando a manutenção do cardápio, o controle de pedidos em fila e o faturamento das vendas.
 
+## Como Executar
+
+Você pode utilizar o executável pré-compilado ou compilar manualmente via terminal.
+
+### Opção 1: Execução Direta
+1. Navegue até a pasta `output`.
+2. Execute o arquivo `main.exe`.
+
+### Opção 2: Compilação via Terminal (GCC)
+Caso deseje compilar o código fonte manualmente, utilize o seguinte comando na raiz do projeto:
+```bash
+gcc main.c -o sistema_cafeteria
+./sistema_cafeteria
+
 ## Estruturas de Dados
 
 O projeto utiliza diferentes estruturas de dados para organizar as informações de forma eficiente, garantindo que cada operação siga uma lógica computacional apropriada.
