@@ -15,7 +15,7 @@ Caso deseje compilar o código fonte manualmente, utilize o seguinte comando na 
 ```bash
 gcc main.c -o sistema_cafeteria
 ./sistema_cafeteria
-
+```
 ## Estruturas de Dados
 
 O projeto utiliza diferentes estruturas de dados para organizar as informações de forma eficiente, garantindo que cada operação siga uma lógica computacional apropriada.
