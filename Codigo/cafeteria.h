@@ -48,7 +48,7 @@ void mostrarRelatorio(Faturamento *f);
 void inicializarPilha(PilhaCancelamento *p);
 void empilharCancelamento(PilhaCancelamento *p, Pedido *pedido);
 Pedido* removerCancelamento(PilhaCancelamento *p);
-int cancelamentoVazio(PilhaCancelamento *p);
+int pilhaVazia(PilhaCancelamento *p);
 void mostrarCancelamentos(PilhaCancelamento *p);
 void limparCancelamentos(PilhaCancelamento *p);
 

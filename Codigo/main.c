@@ -58,10 +58,12 @@ int main() {
                         listarCardapio(cardapio);
                         pausar();
                     } else if (sub == 3) {
+                        listarCardapio(cardapio);
                         int id; printf("ID para editar: "); scanf("%d", &id);
                         editarItem(cardapio, id);
                         pausar();
                     } else if (sub == 4) {
+                        listarCardapio(cardapio);
                         int id; printf("ID para remover: "); scanf("%d", &id);
                         cardapio = deletarItem(cardapio, id);
                         pausar();
